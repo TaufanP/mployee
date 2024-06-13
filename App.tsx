@@ -22,7 +22,7 @@ import {
 import api from './src/config/api';
 import queryClient from './src/config/queryClient';
 import toastConfig from './src/config/toast';
-import {employeeList} from './src/services/employee';
+import {employeeCreate, employeeList} from './src/services/employee';
 
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -67,7 +67,20 @@ function App(): React.JSX.Element {
 
   async function testAPI() {
     try {
-      const data = await employeeList({search: 'john', size: 2, page: 0});
+      const data = await employeeCreate({
+        first_name: 'Yuna Test',
+        last_name: 'Song Test',
+        company_name: 'Colliers International Indonesia',
+        address: 'Jl. Soedirman Kav.29-31 WTC1 lt.14',
+        city: 'South Jakarta',
+        county: 'Setiabudi',
+        state: 'DKI Jakarta',
+        zip: 12059,
+        phone1: '021-2342-2424',
+        phone2: '021-2222-4444',
+        email: 'colliersfm@gmail.com',
+        web: 'cfm-system.com',
+      });
       console.log(data);
     } catch (error) {
       console.log(error);
