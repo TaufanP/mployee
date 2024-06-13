@@ -5,7 +5,7 @@
  * @format
  */
 
-import React from 'react';
+import React, {useEffect} from 'react';
 import type {PropsWithChildren} from 'react';
 import {
   SafeAreaView,
@@ -24,6 +24,7 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import {login} from './src/services/auth';
 
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -61,6 +62,22 @@ function App(): React.JSX.Element {
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
+
+  async function testAPI() {
+    try {
+      const data = await login({
+        username: 'operator@colliers.com',
+        password: 'operator2022',
+      });
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    testAPI();
+  }, []);
 
   return (
     <SafeAreaView style={backgroundStyle}>
@@ -116,3 +133,4 @@ const styles = StyleSheet.create({
 });
 
 export default App;
+
