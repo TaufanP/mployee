@@ -67,7 +67,7 @@ function App(): React.JSX.Element {
 
   async function testAPI() {
     try {
-      const data = await employeeList({id: 1});
+      const data = await employeeList({search: 'john', size: 2, page: 0});
       console.log(data);
     } catch (error) {
       console.log(error);
