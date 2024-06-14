@@ -1,4 +1,11 @@
-import {ActivityIndicator, FlatList, Text, TextInput, View} from 'react-native';
+import {
+  ActivityIndicator,
+  FlatList,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {useDebounce, useEmployeeList} from '../../../hooks';
 import {useState} from 'react';
 
@@ -36,7 +43,7 @@ export default function EmployeeListScreen() {
         }
         ItemSeparatorComponent={() => <View style={{paddingVertical: 8}} />}
         renderItem={({item}) => (
-          <View>
+          <TouchableOpacity onPress={undefined}>
             <Text style={{color: '#333'}}>{item?.first_name}</Text>
             <Text style={{color: '#333'}}>{item?.last_name}</Text>
             <Text style={{color: '#333'}}>{item?.company_name}</Text>
@@ -49,7 +56,7 @@ export default function EmployeeListScreen() {
             <Text style={{color: '#333'}}>{item?.phone2}</Text>
             <Text style={{color: '#333'}}>{item?.email}</Text>
             <Text style={{color: '#333'}}>{item?.web}</Text>
-          </View>
+          </TouchableOpacity>
         )}
       />
     </View>
