@@ -2,6 +2,9 @@
   "workbench.editor.customLabels.patterns": {
     "**/src/services/**/**/**.ts": "services/${dirname}.${extname}",
     "**/src/routes/**/**.tsx": "routes/${dirname}.${extname}",
-    "**/src/containers/**/**/**.tsx": "containers/${dirname}.${extname}"
+    "**/src/containers/**/**/**.tsx": "containers/${dirname}.${extname}",
+    "**/src/hooks/**/**.ts": "hooks/${dirname}.${extname}",
+    "**/src/helpers/**/**.ts": "helpers/${dirname}.${extname}",
+    "**/src/transformResponse/**/**/**.ts": "transformResponse/${dirname}"
   }
 }

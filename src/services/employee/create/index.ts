@@ -16,7 +16,7 @@ interface EmployeeCreatePayload {
   web: string;
 }
 
-export default async function login(
+export default async function create(
   payload: EmployeeCreatePayload,
 ): Promise<any> {
   const {data} = await api.post('/employee/create', payload);

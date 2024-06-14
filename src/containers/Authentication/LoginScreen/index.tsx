@@ -1,5 +1,6 @@
 import {Controller, useForm} from 'react-hook-form';
 import {Button, ScrollView, Text, TextInput, View} from 'react-native';
+import {useLogin, useStoreUserAuth} from '../../../hooks';
 
 interface FormLogin {
   username: string;
@@ -7,6 +8,9 @@ interface FormLogin {
 }
 
 export default function LoginScreen() {
+  const userData = useStoreUserAuth(state => state);
+  const login = useLogin();
+
   const {
     control,
     handleSubmit,
@@ -18,10 +22,15 @@ export default function LoginScreen() {
       password: '',
     },
   });
-  const onSubmit = (data: FormLogin) => console.log(data);
+
+  async function onSubmit(data: FormLogin) {
+    login.mutate({password: data.password, username: data.username});
+  }
 
   return (
-    <ScrollView contentInsetAdjustmentBehavior="automatic">
+    <ScrollView
+      contentInsetAdjustmentBehavior="automatic"
+      keyboardShouldPersistTaps="always">
       <View>
         <Controller
           control={control}
@@ -73,7 +82,7 @@ export default function LoginScreen() {
         />
         {errors.password && <Text>This is required.</Text>}
       </View>
-      <Button title="Submit" onPress={() => handleSubmit(onSubmit)} />
+      <Button title="Submit" onPress={handleSubmit(onSubmit)} />
     </ScrollView>
   );
 }

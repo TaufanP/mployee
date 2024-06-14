@@ -14,12 +14,13 @@ export default new QueryClient({
   mutationCache: new MutationCache({
     onError: (error, variables, context) => {
       logger(
-        error?.message,
+        error,
         undefined,
         'error',
         `src/config/queryClient/${JSON.stringify(variables)}`,
       );
-      showToast(error.message || 'Ada kendala');
+      if (typeof error === 'string') showToast(error || 'Something went wrong');
+      else showToast(error.message || 'Something went wrong');
     },
   }),
   queryCache: new QueryCache({
