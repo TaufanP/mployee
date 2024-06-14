@@ -1,5 +1,7 @@
 {
   "workbench.editor.customLabels.patterns": {
-    "**/src/services/**/**/**.ts": "services/${dirname}.${extname}"
+    "**/src/services/**/**/**.ts": "services/${dirname}.${extname}",
+    "**/src/routes/**/**.tsx": "routes/${dirname}.${extname}",
+    "**/src/containers/**/**/**.tsx": "containers/${dirname}.${extname}"
   }
 }
