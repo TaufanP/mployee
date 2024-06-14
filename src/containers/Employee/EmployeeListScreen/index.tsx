@@ -1,5 +1,6 @@
 import {
   ActivityIndicator,
+  Button,
   FlatList,
   Text,
   TextInput,
@@ -8,8 +9,11 @@ import {
 } from 'react-native';
 import {useDebounce, useEmployeeList} from '../../../hooks';
 import {useState} from 'react';
+import {RootStackScreenProps} from '../../../types/routes';
 
-export default function EmployeeListScreen() {
+export default function EmployeeListScreen(
+  props: RootStackScreenProps<'EmployeeList'>,
+) {
   const [search, searchSet] = useState<string>('');
 
   const debouncedSearch = useDebounce(search, 500);
@@ -22,6 +26,10 @@ export default function EmployeeListScreen() {
 
   return (
     <View>
+      <Button
+        title="Create Employee"
+        onPress={() => props.navigation.navigate('EmployeeCreate')}
+      />
       <TextInput
         placeholder="search employee"
         onChangeText={searchSet}
@@ -43,7 +51,10 @@ export default function EmployeeListScreen() {
         }
         ItemSeparatorComponent={() => <View style={{paddingVertical: 8}} />}
         renderItem={({item}) => (
-          <TouchableOpacity onPress={undefined}>
+          <TouchableOpacity
+            onPress={() =>
+              props.navigation.navigate('EmployeeDetail', {id: 3})
+            }>
             <Text style={{color: '#333'}}>{item?.first_name}</Text>
             <Text style={{color: '#333'}}>{item?.last_name}</Text>
             <Text style={{color: '#333'}}>{item?.company_name}</Text>
