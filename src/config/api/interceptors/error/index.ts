@@ -38,7 +38,6 @@ export default function (error: AxiosError) {
   }
 
   if (statusCode === 400) {
-    console.log(error?.response?.data);
     return Promise.reject({
       ...(typeof error?.response?.data === 'string'
         ? {message: error?.response?.data}

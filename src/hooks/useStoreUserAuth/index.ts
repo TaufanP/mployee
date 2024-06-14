@@ -4,6 +4,7 @@ import {LoginType} from '../../transformResponse/authentication/login';
 
 const initialValue: LoginType = {
   token: '',
+  expirationDate: null,
 };
 
 export default function <T>(callback: (state: LoginType) => T): T {

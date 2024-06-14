@@ -1,3 +1,4 @@
+import {useState} from 'react';
 import {
   ActivityIndicator,
   Button,
@@ -8,7 +9,6 @@ import {
   View,
 } from 'react-native';
 import {useDebounce, useEmployeeList} from '../../../hooks';
-import {useState} from 'react';
 import {RootStackScreenProps} from '../../../types/routes';
 
 export default function EmployeeListScreen(

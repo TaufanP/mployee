@@ -6,8 +6,6 @@ export default function EmployeeDetailScreen() {
 
   const item = employeeListReq.data;
 
-  console.log(item);
-
   return (
     <View>
       <Text style={{color: '#333'}}>{item?.first_name}</Text>

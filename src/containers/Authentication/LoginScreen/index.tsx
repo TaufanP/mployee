@@ -9,6 +9,7 @@ interface FormLogin {
 
 export default function LoginScreen() {
   const login = useLogin();
+  const expiry = useStoreUserAuth(state => state.expirationDate);
 
   const {
     control,
