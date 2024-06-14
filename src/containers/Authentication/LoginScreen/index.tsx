@@ -24,7 +24,10 @@ export default function LoginScreen() {
   });
 
   async function onSubmit(data: FormLogin) {
-    login.mutate({password: data.password, username: data.username});
+    login.mutate({
+      password: data.password.trim(),
+      username: data.username.trim(),
+    });
   }
 
   return (
@@ -35,9 +38,15 @@ export default function LoginScreen() {
         <Controller
           control={control}
           rules={{
-            required: true,
-            maxLength: 72,
-            minLength: 3,
+            required: {message: 'Please enter your username!', value: true},
+            maxLength: {
+              message: 'Username should be less than 72 characters!',
+              value: 72,
+            },
+            minLength: {
+              message: 'Username should be more than 3 characters!',
+              value: 3,
+            },
           }}
           render={({field: {onChange, onBlur, value, ref}}) => (
             <TextInput
@@ -57,13 +66,19 @@ export default function LoginScreen() {
           )}
           name="username"
         />
-        {errors.username && <Text>This is required.</Text>}
+        {errors.username && <Text>{errors.username?.message}</Text>}
         <Controller
           control={control}
           rules={{
-            maxLength: 24,
-            minLength: 3,
-            required: true,
+            maxLength: {
+              message: 'Password should be less than 24 characters!',
+              value: 24,
+            },
+            minLength: {
+              message: 'Password should be more than 3 characters!',
+              value: 3,
+            },
+            required: {message: 'Please enter your password!', value: true},
           }}
           render={({field: {onChange, onBlur, value, ref}}) => (
             <TextInput
@@ -80,7 +95,7 @@ export default function LoginScreen() {
           )}
           name="password"
         />
-        {errors.password && <Text>This is required.</Text>}
+        {errors.password && <Text>{errors.password?.message}</Text>}
       </View>
       <Button title="Submit" onPress={handleSubmit(onSubmit)} />
     </ScrollView>
