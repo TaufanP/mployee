@@ -7,11 +7,12 @@ interface EmployeeListPayload {
   page?: number;
 }
 
-export default async function list(
-  payload?: EmployeeListPayload,
-): Promise<any> {
+export default async function list({
+  id,
+  ...payload
+}: EmployeeListPayload): Promise<any> {
   const {data} = await api.get('/employee', {
-    params: !!payload?.id ? {id: payload.id} : payload,
+    params: !!id ? {id} : payload,
   });
   return data;
 }

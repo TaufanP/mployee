@@ -2,7 +2,7 @@ import {useInfiniteQuery} from '@tanstack/react-query';
 import {queryKeys} from '../../helpers';
 import {employeeList} from '../../services/employee';
 
-export default function useEmployeeList() {
+export default function useEmployeeList({search}: {search?: string}) {
   const {
     data,
     error,
@@ -13,10 +13,8 @@ export default function useEmployeeList() {
     isLoading,
     isError,
   } = useInfiniteQuery({
-    queryKey: queryKeys.employeeKeys.lists(),
-    queryFn: ({pageParam}) => {
-      return employeeList({page: pageParam, size: 10});
-    },
+    queryKey: queryKeys.employeeKeys.list({search}),
+    queryFn: ({pageParam}) => employeeList({page: pageParam, size: 10, search}),
     getNextPageParam: (lastPage, allPages) => {
       return lastPage.length < 10 ? undefined : allPages.length + 1;
     },
