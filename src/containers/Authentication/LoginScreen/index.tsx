@@ -8,7 +8,6 @@ interface FormLogin {
 }
 
 export default function LoginScreen() {
-  const userData = useStoreUserAuth(state => state);
   const login = useLogin();
 
   const {

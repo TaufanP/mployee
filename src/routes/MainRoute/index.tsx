@@ -1,6 +1,6 @@
 import {SafeAreaView} from 'react-native';
 import api from '../../config/api';
-import {EmployeeDetailScreen} from '../../containers/';
+import {EmployeeCreateScreen} from '../../containers/';
 import {useStoreUserAuth} from '../../hooks';
 
 export default function MainRoute() {
@@ -10,7 +10,7 @@ export default function MainRoute() {
 
   return (
     <SafeAreaView>
-      <EmployeeDetailScreen />
+      <EmployeeCreateScreen />
     </SafeAreaView>
   );
 }

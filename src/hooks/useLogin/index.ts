@@ -7,11 +7,11 @@ import transformResponse from '../../transformResponse';
 
 export default function useLogin() {
   return useMutation({
-    mutationKey: [queryKeys.loginKey],
+    mutationKey: queryKeys.loginKey,
     mutationFn: login,
     onSuccess: data => {
       queryClient.setQueryData(
-        [queryKeys.userAuthKey],
+        queryKeys.userAuthKey,
         transformResponse.login(data),
       );
       localStorage.set(
