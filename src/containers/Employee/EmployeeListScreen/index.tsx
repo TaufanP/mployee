@@ -34,6 +34,7 @@ export default function EmployeeListScreen(
         placeholder="search employee"
         onChangeText={searchSet}
         value={search}
+        maxLength={200}
       />
       <FlatList
         ListEmptyComponent={

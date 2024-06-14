@@ -41,10 +41,10 @@ export default function LoginScreen() {
             required: {message: 'Please enter your username!', value: true},
             maxLength: {
               message: 'Username should be less than 72 characters!',
-              value: 72,
+              value: 71,
             },
             minLength: {
-              message: 'Username should be more than 3 characters!',
+              message: 'Username should be more than 2 characters!',
               value: 3,
             },
           }}
@@ -52,7 +52,7 @@ export default function LoginScreen() {
             <TextInput
               placeholder="enter your username"
               keyboardType="email-address"
-              maxLength={72}
+              maxLength={71}
               onBlur={onBlur}
               onChangeText={onChange}
               value={value}
@@ -72,18 +72,18 @@ export default function LoginScreen() {
           rules={{
             maxLength: {
               message: 'Password should be less than 24 characters!',
-              value: 24,
+              value: 23,
             },
             minLength: {
               message: 'Password should be more than 3 characters!',
-              value: 3,
+              value: 4,
             },
             required: {message: 'Please enter your password!', value: true},
           }}
           render={({field: {onChange, onBlur, value, ref}}) => (
             <TextInput
               secureTextEntry
-              maxLength={24}
+              maxLength={23}
               placeholder="enter your password"
               onBlur={onBlur}
               onChangeText={onChange}

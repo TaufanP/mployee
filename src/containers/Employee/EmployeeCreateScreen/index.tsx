@@ -17,6 +17,11 @@ interface FormEmployee {
   web: string;
 }
 
+function stringValidate(text: string) {
+  if (!text) return '';
+  else return text.trim().replace(/\s+/g, ' ');
+}
+
 export default function EmployeeCreateScreen() {
   const employeeCreateReq = useEmployeeCreate();
 
@@ -43,7 +48,20 @@ export default function EmployeeCreateScreen() {
   });
 
   async function onSubmit(data: FormEmployee) {
-    employeeCreateReq.mutate({...data, zip: parseInt(data.zip)});
+    employeeCreateReq.mutate({
+      ...data,
+      zip: parseInt(stringValidate(data.zip)),
+      first_name: stringValidate(data.first_name),
+      last_name: stringValidate(data.last_name),
+      company_name: stringValidate(data.company_name),
+      address: stringValidate(data.address),
+      city: stringValidate(data.city),
+      county: stringValidate(data.county),
+      state: stringValidate(data.state),
+      phone1: stringValidate(data.phone1),
+      phone2: stringValidate(data.phone2),
+      email: stringValidate(data.email),
+    });
   }
 
   return (
@@ -53,13 +71,23 @@ export default function EmployeeCreateScreen() {
       <Controller
         control={control}
         rules={{
-          required: true,
-          maxLength: 72,
-          minLength: 3,
+          required: {message: 'Please enter employee first name!', value: true},
+          maxLength: {
+            message: 'First name should be less than 72 characters!',
+            value: 71,
+          },
+          minLength: {
+            message: 'First name should be more than 2 characters!',
+            value: 3,
+          },
+          pattern: {
+            value: /^[a-zA-Z-']+$/,
+            message: 'Cannot contain special characters or numbers!',
+          },
         }}
         render={({field: {onChange, onBlur, value}}) => (
           <TextInput
-            placeholder="enter your first name"
+            placeholder="enter employee first name"
             maxLength={72}
             onBlur={onBlur}
             onChangeText={onChange}
@@ -70,17 +98,27 @@ export default function EmployeeCreateScreen() {
         )}
         name="first_name"
       />
-      {errors.first_name && <Text>This is required.</Text>}
+      {errors.first_name && <Text>{errors.first_name.message}</Text>}
       <Controller
         control={control}
         rules={{
-          maxLength: 72,
-          minLength: 3,
+          maxLength: {
+            message: 'Last name should be less than 72 characters!',
+            value: 71,
+          },
+          minLength: {
+            message: 'Last name should be more than 2 characters!',
+            value: 3,
+          },
+          pattern: {
+            value: /^[a-zA-Z-']+$/,
+            message: 'Cannot contain special characters or numbers!',
+          },
         }}
         render={({field: {onChange, onBlur, value}}) => (
           <TextInput
-            placeholder="enter your last name"
-            maxLength={72}
+            placeholder="enter employee last name"
+            maxLength={71}
             onBlur={onBlur}
             onChangeText={onChange}
             value={value}
@@ -89,17 +127,27 @@ export default function EmployeeCreateScreen() {
         )}
         name="last_name"
       />
-      {errors.last_name && <Text>This is required.</Text>}
+      {errors.last_name && <Text>{errors.last_name.message}</Text>}
       <Controller
         control={control}
         rules={{
-          maxLength: 72,
-          minLength: 3,
+          required: {
+            message: 'Please enter employee company name!',
+            value: true,
+          },
+          maxLength: {
+            message: 'Company name should be less than 100 characters!',
+            value: 99,
+          },
+          minLength: {
+            message: 'Company name should be more than 2 characters!',
+            value: 3,
+          },
         }}
         render={({field: {onChange, onBlur, value}}) => (
           <TextInput
-            placeholder="enter your company name"
-            maxLength={72}
+            placeholder="enter employee company name"
+            maxLength={99}
             onBlur={onBlur}
             onChangeText={onChange}
             value={value}
@@ -108,36 +156,48 @@ export default function EmployeeCreateScreen() {
         )}
         name="company_name"
       />
-      {errors.company_name && <Text>This is required.</Text>}
+      {errors.company_name && <Text>{errors.company_name.message}</Text>}
       <Controller
         control={control}
         rules={{
-          maxLength: 72,
-          minLength: 3,
+          maxLength: {
+            message: 'Address should be less than 200 characters!',
+            value: 199,
+          },
+          minLength: {
+            message: 'Please enter a valid address!',
+            value: 3,
+          },
         }}
         render={({field: {onChange, onBlur, value}}) => (
           <TextInput
-            placeholder="enter your address"
-            maxLength={72}
+            placeholder="enter employee address"
+            maxLength={199}
             onBlur={onBlur}
             onChangeText={onChange}
             value={value}
-            autoCapitalize="words"
+            autoCapitalize="none"
           />
         )}
         name="address"
       />
-      {errors.address && <Text>This is required.</Text>}
+      {errors.address && <Text>{errors.address.message}</Text>}
       <Controller
         control={control}
         rules={{
-          maxLength: 72,
-          minLength: 3,
+          maxLength: {
+            message: 'City should be less than 100 characters!',
+            value: 99,
+          },
+          minLength: {
+            message: 'City should be more than 1 characters!',
+            value: 2,
+          },
         }}
         render={({field: {onChange, onBlur, value}}) => (
           <TextInput
-            placeholder="enter your city"
-            maxLength={72}
+            placeholder="enter employee city"
+            maxLength={99}
             onBlur={onBlur}
             onChangeText={onChange}
             value={value}
@@ -146,17 +206,23 @@ export default function EmployeeCreateScreen() {
         )}
         name="city"
       />
-      {errors.city && <Text>This is required.</Text>}
+      {errors.city && <Text>{errors.city.message}</Text>}
       <Controller
         control={control}
         rules={{
-          maxLength: 72,
-          minLength: 3,
+          maxLength: {
+            message: 'County should be less than 100 characters!',
+            value: 99,
+          },
+          minLength: {
+            message: 'County should be more than 1 characters!',
+            value: 2,
+          },
         }}
         render={({field: {onChange, onBlur, value}}) => (
           <TextInput
-            placeholder="enter your county"
-            maxLength={72}
+            placeholder="enter employee county"
+            maxLength={99}
             onBlur={onBlur}
             onChangeText={onChange}
             value={value}
@@ -165,17 +231,23 @@ export default function EmployeeCreateScreen() {
         )}
         name="county"
       />
-      {errors.county && <Text>This is required.</Text>}
+      {errors.county && <Text>{errors.county.message}</Text>}
       <Controller
         control={control}
         rules={{
-          maxLength: 72,
-          minLength: 3,
+          maxLength: {
+            message: 'State should be less than 100 characters!',
+            value: 99,
+          },
+          minLength: {
+            message: 'State should be more than 1 characters!',
+            value: 2,
+          },
         }}
         render={({field: {onChange, onBlur, value}}) => (
           <TextInput
-            placeholder="enter your state"
-            maxLength={72}
+            placeholder="enter employee state"
+            maxLength={99}
             onBlur={onBlur}
             onChangeText={onChange}
             value={value}
@@ -184,102 +256,138 @@ export default function EmployeeCreateScreen() {
         )}
         name="state"
       />
-      {errors.state && <Text>This is required.</Text>}
+      {errors.state && <Text>{errors.state.message}</Text>}
       <Controller
         control={control}
         rules={{
-          maxLength: 72,
-          minLength: 3,
+          maxLength: {
+            message: 'ZIP code should be less than 12 characters!',
+            value: 11,
+          },
+          minLength: {
+            message: 'ZIP code should be more than 2 characters!',
+            value: 3,
+          },
+          pattern: {
+            value: /^[0-9\-]+$/,
+            message: 'ZIP code should only contains numbers!',
+          },
         }}
         render={({field: {onChange, onBlur, value}}) => (
           <TextInput
-            placeholder="enter your zip"
-            maxLength={72}
+            placeholder="enter employee zip"
+            maxLength={11}
             onBlur={onBlur}
             onChangeText={onChange}
             value={value}
-            autoCapitalize="words"
+            keyboardType="number-pad"
           />
         )}
         name="zip"
       />
-      {errors.zip && <Text>This is required.</Text>}
+      {errors.zip && <Text>{errors.zip.message}</Text>}
       <Controller
         control={control}
         rules={{
-          maxLength: 72,
-          minLength: 3,
+          maxLength: {
+            message: 'Phone number should be less than 16 characters!',
+            value: 15,
+          },
+          minLength: {
+            message: 'Phone number should be more than 10 characters!',
+            value: 11,
+          },
+          pattern: {
+            value: /^\d+$/,
+            message: 'Phone number should be numbers only!',
+          },
         }}
         render={({field: {onChange, onBlur, value}}) => (
           <TextInput
-            placeholder="enter your primary phone"
-            maxLength={72}
+            placeholder="enter employee primary phone"
+            maxLength={15}
             onBlur={onBlur}
             onChangeText={onChange}
             value={value}
-            autoCapitalize="words"
+            keyboardType="phone-pad"
           />
         )}
         name="phone1"
       />
-      {errors.phone1 && <Text>This is required.</Text>}
+      {errors.phone1 && <Text>{errors.phone1.message}</Text>}
       <Controller
         control={control}
         rules={{
-          maxLength: 72,
-          minLength: 3,
+          maxLength: {
+            message: 'Phone number should be less than 16 characters!',
+            value: 15,
+          },
+          minLength: {
+            message: 'Phone number should be more than 10 characters!',
+            value: 11,
+          },
+          pattern: {
+            value: /^\d+$/,
+            message: 'Phone number should be numbers only!',
+          },
         }}
         render={({field: {onChange, onBlur, value}}) => (
           <TextInput
-            placeholder="enter your secondary phone"
-            maxLength={72}
+            placeholder="enter employee secondary phone"
+            maxLength={15}
             onBlur={onBlur}
             onChangeText={onChange}
             value={value}
-            autoCapitalize="words"
+            keyboardType="phone-pad"
           />
         )}
         name="phone2"
       />
-      {errors.phone2 && <Text>This is required.</Text>}
+      {errors.phone2 && <Text>{errors.phone2.message}</Text>}
       <Controller
         control={control}
         rules={{
-          maxLength: 72,
-          minLength: 3,
+          pattern: {
+            value: /^[A-Za-z0-9._+\-\']+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}$/,
+            message: 'Please enter a valid email address!',
+          },
         }}
         render={({field: {onChange, onBlur, value}}) => (
           <TextInput
-            placeholder="enter your email"
+            placeholder="enter employee email"
             maxLength={72}
             onBlur={onBlur}
             onChangeText={onChange}
             value={value}
-            autoCapitalize="words"
+            keyboardType="email-address"
           />
         )}
         name="email"
       />
-      {errors.email && <Text>This is required.</Text>}
+      {errors.email && <Text>{errors.email.message}</Text>}
       <Controller
         control={control}
         rules={{
-          maxLength: 72,
-          minLength: 3,
+          maxLength: {value: 2048, message: 'The URL is too long!'},
+          pattern: {
+            value:
+              /^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+\.[a-z]+(\/[a-zA-Z0-9#]+\/?)*$/,
+            message: 'Please enter a valid website URL!',
+          },
         }}
         render={({field: {onChange, onBlur, value}}) => (
           <TextInput
-            placeholder="enter your web"
-            maxLength={72}
+            placeholder="enter employee website address"
+            maxLength={2048}
             onBlur={onBlur}
             onChangeText={onChange}
             value={value}
-            autoCapitalize="words"
+            keyboardType="url"
           />
         )}
         name="web"
       />
-      {errors.web && <Text>This is required.</Text>}
+      {errors.web && <Text>{errors.web.message}.</Text>}
       <Button title="Submit" onPress={handleSubmit(onSubmit)} />
     </ScrollView>
   );
