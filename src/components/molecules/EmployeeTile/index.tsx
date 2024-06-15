@@ -1,10 +1,9 @@
 import {Linking, View} from 'react-native';
-import {Touch, Words} from '../../atoms';
-import styles from './styles';
-import spaces from '../../../constants/spaces';
-import ICONS from '../../../assets/icons';
-import colors from '../../../constants/colors';
 import Toast from 'react-native-toast-message';
+import spaces from '../../../constants/spaces';
+import {Touch, Words} from '../../atoms';
+import QuickAction from '../QuickAction';
+import styles from './styles';
 
 interface Props {
   onPress?: () => void;
@@ -38,24 +37,21 @@ export default function EmployeeTile(props: Props) {
       </View>
       <View style={styles.dash} />
       <View style={styles.containerActions}>
-        <Touch
-          style={styles.containerAction}
-          onPress={() => quickAction('phone', props.phone)}>
-          <ICONS.Phone />
-          <Words color={colors.primary1}>Call</Words>
-        </Touch>
-        <Touch
-          style={styles.containerAction}
-          onPress={() => quickAction('mail', props.email)}>
-          <ICONS.Mail />
-          <Words color={colors.primary1}>Mail</Words>
-        </Touch>
-        <Touch
-          style={styles.containerAction}
-          onPress={() => quickAction('web', props?.web)}>
-          <ICONS.Arrow />
-          <Words color={colors.primary1}>Visit</Words>
-        </Touch>
+        <QuickAction
+          onPress={() => quickAction('phone', props?.phone)}
+          type="call"
+          disabled={!props?.phone}
+        />
+        <QuickAction
+          onPress={() => quickAction('mail', props?.email)}
+          type="mail"
+          disabled={!props?.email}
+        />
+        <QuickAction
+          onPress={() => quickAction('web', props?.web)}
+          type="web"
+          disabled={!props?.web}
+        />
       </View>
     </Touch>
   );
@@ -78,15 +74,30 @@ export default function EmployeeTile(props: Props) {
           break;
       }
       try {
-        Linking.openURL(link);
+        if (type === 'web') {
+          const canOpen = await Linking.canOpenURL(link);
+          if (canOpen) Linking.openURL(link);
+          else {
+            Toast.show({
+              position: 'bottom',
+              type: 'error',
+              text1: 'Cannot visit the site!',
+            });
+          }
+        } else Linking.openURL(link);
       } catch (error) {
-        console.log(error);
         Toast.show({
           position: 'bottom',
           type: 'error',
           text1: 'Cannot do the action!',
         });
       }
+    } else {
+      Toast.show({
+        position: 'bottom',
+        type: 'error',
+        text1: 'Cannot do the action!',
+      });
     }
   }
 }
