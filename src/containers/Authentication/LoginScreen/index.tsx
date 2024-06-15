@@ -1,6 +1,15 @@
+import {useReducer} from 'react';
 import {Controller, useForm} from 'react-hook-form';
-import {Button, ScrollView, Text, TextInput, View} from 'react-native';
-import {useLogin, useStoreUserAuth} from '../../../hooks';
+import {ScrollView} from 'react-native';
+import ICONS from '../../../assets/icons';
+import {Gap, Touch, Words} from '../../../components/atoms';
+import {InputField} from '../../../components/molecules';
+import {LoginFooter, Screen} from '../../../components/organisms';
+import colors from '../../../constants/colors';
+import {SCREEN_HORIZONTAL_PADDING} from '../../../constants/components';
+import {loginForm} from '../../../constants/components/forms';
+import spaces from '../../../constants/spaces';
+import {useLogin} from '../../../hooks';
 
 interface FormLogin {
   username: string;
@@ -9,7 +18,8 @@ interface FormLogin {
 
 export default function LoginScreen() {
   const login = useLogin();
-  const expiry = useStoreUserAuth(state => state.expirationDate);
+
+  const [secureEntry, toggleSecureEntry] = useReducer(c => !c, true);
 
   const {
     control,
@@ -31,73 +41,74 @@ export default function LoginScreen() {
   }
 
   return (
-    <ScrollView
-      contentInsetAdjustmentBehavior="automatic"
-      keyboardShouldPersistTaps="always">
-      <View>
+    <Screen>
+      <ScrollView
+        contentContainerStyle={{paddingHorizontal: SCREEN_HORIZONTAL_PADDING}}
+        contentInsetAdjustmentBehavior="automatic"
+        keyboardShouldPersistTaps="always"
+        showsVerticalScrollIndicator={false}>
+        <Gap vertical={spaces['3xl']} />
+        <Words style={{fontSize: 36, fontWeight: 'bold'}}>Login</Words>
+        <Gap vertical={8} />
+        <Words>Please login to continue with your account</Words>
+        <Gap vertical={32} />
         <Controller
           control={control}
-          rules={{
-            required: {message: 'Please enter your username!', value: true},
-            maxLength: {
-              message: 'Username should be less than 72 characters!',
-              value: 71,
-            },
-            minLength: {
-              message: 'Username should be more than 2 characters!',
-              value: 3,
-            },
-          }}
+          rules={loginForm.username.rule}
           render={({field: {onChange, onBlur, value, ref}}) => (
-            <TextInput
-              placeholder="enter your username"
-              keyboardType="email-address"
-              maxLength={71}
+            <InputField
+              error={errors.username?.message}
+              isError={!!errors.username}
+              LeftIcon={<ICONS.Person />}
               onBlur={onBlur}
               onChangeText={onChange}
-              value={value}
-              autoCapitalize="none"
-              autoFocus
               onSubmitEditing={() => setFocus('password')}
               ref={ref}
-              returnKeyLabel="next"
-              returnKeyType="next"
+              value={value}
+              {...loginForm.username.input}
             />
           )}
           name="username"
         />
-        {errors.username && <Text>{errors.username?.message}</Text>}
         <Controller
           control={control}
-          rules={{
-            maxLength: {
-              message: 'Password should be less than 24 characters!',
-              value: 23,
-            },
-            minLength: {
-              message: 'Password should be more than 3 characters!',
-              value: 4,
-            },
-            required: {message: 'Please enter your password!', value: true},
-          }}
+          rules={loginForm.password.rule}
           render={({field: {onChange, onBlur, value, ref}}) => (
-            <TextInput
-              secureTextEntry
-              maxLength={23}
-              placeholder="enter your password"
+            <InputField
+              error={errors.password?.message}
+              isError={!!errors.password}
+              LeftIcon={<ICONS.Lock />}
               onBlur={onBlur}
               onChangeText={onChange}
-              value={value}
-              autoCapitalize="none"
-              ref={ref}
               onSubmitEditing={handleSubmit(onSubmit)}
+              ref={ref}
+              RightIcon={
+                secureEntry ? (
+                  <ICONS.EyeClose fill={colors.secondary1} />
+                ) : (
+                  <ICONS.EyeOpen fill={colors.secondary1} />
+                )
+              }
+              rightIconPress={toggleSecureEntry}
+              secureTextEntry={secureEntry}
+              value={value}
+              {...loginForm.password.input}
             />
           )}
           name="password"
         />
-        {errors.password && <Text>{errors.password?.message}</Text>}
-      </View>
-      <Button title="Submit" onPress={handleSubmit(onSubmit)} />
-    </ScrollView>
+        <Gap vertical={spaces.m} />
+        <Touch>
+          <Words underline textAlign="right" color={colors.primary1}>
+            Forgot Password
+          </Words>
+        </Touch>
+      </ScrollView>
+      <LoginFooter
+        onPress={handleSubmit(onSubmit)}
+        isLoading={login.isPending}
+        disabled={login.isPending}
+      />
+    </Screen>
   );
 }

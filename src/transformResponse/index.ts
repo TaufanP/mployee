@@ -1,3 +1,5 @@
 import {login} from './authentication';
 
-export default {login};
+const transformResponse = {login};
+
+export default transformResponse;

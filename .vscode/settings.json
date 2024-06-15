@@ -5,6 +5,11 @@
     "**/src/containers/**/**/**.tsx": "containers/${dirname}.${extname}",
     "**/src/hooks/**/**.ts": "hooks/${dirname}.${extname}",
     "**/src/helpers/**/**.ts": "helpers/${dirname}.${extname}",
-    "**/src/transformResponse/**/**/**.ts": "transformResponse/${dirname}"
+    "**/src/transformResponse/**/**/**.ts": "transformResponse/${dirname}",
+    "**/src/components/**/**/**.tsx": "${dirname(1)}/${dirname}.${extname}",
+    "**/src/components/**/**.ts": "${dirname}.${extname}",
+    "**/src/constants/**/**.ts": "${dirname}.${extname}",
+    "**/src/assets/**/**/**.tsx": "${dirname(1)}/${dirname}.${extname}",
+    "**/src/assets/**/**.ts": "${dirname(1)}/${dirname}.${extname}"
   }
 }

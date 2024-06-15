@@ -10,4 +10,6 @@ const loginKey = ['login'];
 const employeeCreateKey = ['employeeCreate'];
 const userAuthKey = ['userAuth'];
 
-export default {loginKey, employeeKeys, userAuthKey, employeeCreateKey};
+const queryKeys = {loginKey, employeeKeys, userAuthKey, employeeCreateKey};
+
+export default queryKeys;
