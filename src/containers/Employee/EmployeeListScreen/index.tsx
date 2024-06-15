@@ -14,6 +14,8 @@ import spaces from '../../../constants/spaces';
 import {joinString} from '../../../helpers';
 import {useDebounce, useEmployeeList} from '../../../hooks';
 import {RootStackScreenProps} from '../../../types/routes';
+import queryClient from '../../../config/queryClient';
+import localStorage from '../../../config/localStorage';
 
 export default function EmployeeListScreen(
   props: RootStackScreenProps<'EmployeeList'>,
@@ -28,9 +30,21 @@ export default function EmployeeListScreen(
     if (employeeListReq.hasNextPage) employeeListReq.fetchNextPage();
   }
 
+  function logout() {
+    queryClient.resetQueries();
+    queryClient.removeQueries();
+    queryClient.clear();
+    localStorage.clearAll();
+  }
+
   return (
     <Screen>
-      <Header title="Employee Database" hasAction actionLabel="Logout" />
+      <Header
+        title="Employee Database"
+        hasAction
+        actionLabel="Logout"
+        actionPress={logout}
+      />
       <Gap vertical={16} />
       <View style={{paddingHorizontal: 24}}>
         <InputField
