@@ -1,8 +1,11 @@
+import LottieView from 'lottie-react-native';
 import {useState} from 'react';
-import {ActivityIndicator, FlatList, RefreshControl, View} from 'react-native';
+import {ActivityIndicator, Dimensions, FlatList, View} from 'react-native';
+import ANIMATIONS from '../../../assets/animations';
 import ICONS from '../../../assets/icons';
-import {Gap} from '../../../components/atoms';
+import {Gap, Words} from '../../../components/atoms';
 import {
+  Button,
   ButtonIcon,
   EmployeeTile,
   InputField,
@@ -42,16 +45,73 @@ export default function EmployeeListScreen(
         <Gap vertical={16} />
       </View>
       <FlatList
-        refreshControl={
-          <RefreshControl
-            refreshing={employeeListReq.isRefetchingByUser}
-            onRefresh={employeeListReq.refetchByUser}
-          />
-        }
         ListEmptyComponent={
-          employeeListReq.isLoading ? <ActivityIndicator /> : null
+          <View
+            style={{
+              width: '100%',
+              height: Dimensions.get('screen').height * 0.7,
+              flex: 1,
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            {employeeListReq.isLoading ? (
+              <View
+                style={{
+                  flex: 1,
+                  width: '100%',
+                  height: '100%',
+                  gap: spaces.lg,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}>
+                <View style={{width: '100%', aspectRatio: 1.5}}>
+                  <LottieView
+                    source={ANIMATIONS.Airplane}
+                    style={{width: '100%', height: '100%', flex: 1}}
+                    autoPlay
+                    loop
+                  />
+                </View>
+                <View style={{flex: 1, gap: 24}}>
+                  <Words textAlign="center" size="lg">
+                    Searching for employees...
+                  </Words>
+                </View>
+              </View>
+            ) : (
+              <View
+                style={{
+                  flex: 1,
+                  width: '100%',
+                  height: '100%',
+                  gap: spaces.lg,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}>
+                <View style={{width: '100%', aspectRatio: 1.5}}>
+                  <LottieView
+                    source={ANIMATIONS.Empty}
+                    style={{width: '100%', height: '100%', flex: 1}}
+                    autoPlay
+                    loop
+                  />
+                </View>
+                <View style={{flex: 1, gap: 24}}>
+                  <Words textAlign="center" size="lg">
+                    There is no one here.
+                  </Words>
+                  <Button
+                    text="Create New"
+                    onPress={() => props.navigation.navigate('EmployeeCreate')}
+                  />
+                </View>
+              </View>
+            )}
+          </View>
         }
-        contentContainerStyle={{paddingHorizontal: SCREEN_HORIZONTAL_PADDING}}
+        contentContainerStyle={{
+          paddingHorizontal: SCREEN_HORIZONTAL_PADDING,
+        }}
         onEndReached={loadNext}
         onEndReachedThreshold={0.2}
         showsVerticalScrollIndicator={false}
