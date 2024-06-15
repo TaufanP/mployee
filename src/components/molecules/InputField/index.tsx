@@ -49,6 +49,7 @@ const InputField = forwardRef<any, Props>(
             {!!LeftIcon && <View style={styles.containerIcon}>{LeftIcon}</View>}
             <TextInput
               {...props}
+              placeholderTextColor={colors.dark350}
               style={styles.input}
               ref={ref}
               onFocus={onFocus}

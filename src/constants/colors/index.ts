@@ -1,5 +1,6 @@
 const colors = {
   danger: '#FF4C4C',
+  dark350: '#797575',
   dark400: '#868686',
   dark650: '#C3C3C3',
   dark700: '#D1D1D1',

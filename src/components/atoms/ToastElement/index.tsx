@@ -3,13 +3,14 @@ import {
   BaseToastProps,
   ErrorToast,
 } from 'react-native-toast-message';
+import colors from '../../../constants/colors';
 
 export function BaseElement(props: BaseToastProps) {
   return (
     <BaseToast
       {...props}
-      // style={{borderLeftColor: colors.accent, ...style}}
-      // text1Style={textStyle}
+      style={{borderLeftColor: colors.primary1, backgroundColor: '#F6F6F6'}}
+      text1Style={{color: colors.text}}
     />
   );
 }
@@ -18,8 +19,8 @@ export function ErrorElement(props: BaseToastProps) {
   return (
     <ErrorToast
       {...props}
-      // style={{borderLeftColor: colors.danger, ...style}}
-      // text1Style={textStyle}
+      style={{borderLeftColor: colors.danger, backgroundColor: '#F6F6F6'}}
+      text1Style={{color: colors.text}}
     />
   );
 }
