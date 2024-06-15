@@ -13,7 +13,7 @@ export default function login(token: string) {
     const result = {token};
     return LoginSchema.parse({
       ...result,
-      expirationDate: new Date().getTime() + 24 * 60 * 60 * 1000,
+      expirationDate: new Date().getTime() + 1 * 60 * 60 * 1000,
     });
   } catch (error) {
     logger(error, undefined, 'error', 'src/transformResponse/login');

@@ -10,6 +10,8 @@ import {
 } from 'react-native';
 import {useDebounce, useEmployeeList} from '../../../hooks';
 import {RootStackScreenProps} from '../../../types/routes';
+import {InputField} from '../../../components/molecules';
+import {Screen} from '../../../components/organisms';
 
 export default function EmployeeListScreen(
   props: RootStackScreenProps<'EmployeeList'>,
@@ -25,12 +27,12 @@ export default function EmployeeListScreen(
   }
 
   return (
-    <View>
+    <Screen>
       <Button
         title="Create Employee"
         onPress={() => props.navigation.navigate('EmployeeCreate')}
       />
-      <TextInput
+      <InputField
         placeholder="search employee"
         onChangeText={searchSet}
         value={search}
@@ -71,6 +73,6 @@ export default function EmployeeListScreen(
           </TouchableOpacity>
         )}
       />
-    </View>
+    </Screen>
   );
 }
