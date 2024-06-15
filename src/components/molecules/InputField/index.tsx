@@ -41,7 +41,7 @@ const InputField = forwardRef<any, Props>(
     }, [isError]);
 
     return (
-      <Gap vertical={spaces.sm}>
+      <View style={{gap: spaces.sm}}>
         <View style={styles.containerInputLabel}>
           {!!label && <Words>{label}</Words>}
           <Animated.View
@@ -62,7 +62,7 @@ const InputField = forwardRef<any, Props>(
           </Animated.View>
         </View>
         {isError && <Words color={colors.danger}>{error}</Words>}
-      </Gap>
+      </View>
     );
 
     function onFocus(event: NativeSyntheticEvent<TextInputFocusEventData>) {
