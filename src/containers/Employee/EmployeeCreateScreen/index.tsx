@@ -1,21 +1,7 @@
 import {Controller, useForm} from 'react-hook-form';
 import {Button, ScrollView, Text, TextInput} from 'react-native';
 import {useEmployeeCreate} from '../../../hooks';
-
-interface FormEmployee {
-  first_name: string;
-  last_name: string;
-  company_name: string;
-  address: string;
-  city: string;
-  county: string;
-  state: string;
-  zip: string;
-  phone1: string;
-  phone2: string;
-  email: string;
-  web: string;
-}
+import {Employee} from '../../../types/apiResponse/employee';
 
 function stringValidate(text: string) {
   if (!text) return '';
@@ -30,7 +16,7 @@ export default function EmployeeCreateScreen() {
     handleSubmit,
     formState: {errors},
     setFocus,
-  } = useForm<FormEmployee>({
+  } = useForm<Employee>({
     defaultValues: {
       first_name: '',
       last_name: '',
@@ -47,7 +33,7 @@ export default function EmployeeCreateScreen() {
     },
   });
 
-  async function onSubmit(data: FormEmployee) {
+  async function onSubmit(data: Employee) {
     employeeCreateReq.mutate({
       ...data,
       zip: parseInt(stringValidate(data.zip)),

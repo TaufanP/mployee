@@ -1,16 +1,15 @@
 import {useState} from 'react';
-import {
-  ActivityIndicator,
-  Button,
-  FlatList,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {ActivityIndicator, FlatList, View} from 'react-native';
 import ICONS from '../../../assets/icons';
 import {ContentWrapper, Gap} from '../../../components/atoms';
-import {InputField} from '../../../components/molecules';
+import {
+  ButtonIcon,
+  EmployeeTile,
+  InputField,
+} from '../../../components/molecules';
 import {Header, Screen} from '../../../components/organisms';
+import spaces from '../../../constants/spaces';
+import {joinString} from '../../../helpers';
 import {useDebounce, useEmployeeList} from '../../../hooks';
 import {RootStackScreenProps} from '../../../types/routes';
 
@@ -30,56 +29,51 @@ export default function EmployeeListScreen(
   return (
     <Screen>
       <Header title="Employee Database" hasAction actionLabel="Logout" />
-      <Gap vertical={24} />
-      <ContentWrapper>
-        <Button
-          title="Create Employee"
-          onPress={() => props.navigation.navigate('EmployeeCreate')}
-        />
-        <InputField
-          LeftIcon={<ICONS.Lup />}
-          placeholder="Search for employee"
-          onChangeText={searchSet}
-          value={search}
-          maxLength={200}
-        />
-        <FlatList
-          ListEmptyComponent={
-            employeeListReq.isLoading ? <ActivityIndicator /> : null
-          }
-          onEndReached={loadNext}
-          onEndReachedThreshold={0.2}
-          showsVerticalScrollIndicator={false}
-          ListFooterComponent={
-            employeeListReq.isFetchingNextPage ? <ActivityIndicator /> : null
-          }
-          data={
-            employeeListReq.data?.pages
-              .map(page => page)
-              .flatMap(data => data) || []
-          }
-          ItemSeparatorComponent={() => <View style={{paddingVertical: 8}} />}
-          renderItem={({item}) => (
-            <TouchableOpacity
-              onPress={() =>
-                props.navigation.navigate('EmployeeDetail', {id: 3})
-              }>
-              <Text style={{color: '#333'}}>{item?.first_name}</Text>
-              <Text style={{color: '#333'}}>{item?.last_name}</Text>
-              <Text style={{color: '#333'}}>{item?.company_name}</Text>
-              <Text style={{color: '#333'}}>{item?.address}</Text>
-              <Text style={{color: '#333'}}>{item?.city}</Text>
-              <Text style={{color: '#333'}}>{item?.county}</Text>
-              <Text style={{color: '#333'}}>{item?.state}</Text>
-              <Text style={{color: '#333'}}>{item?.zip}</Text>
-              <Text style={{color: '#333'}}>{item?.phone1}</Text>
-              <Text style={{color: '#333'}}>{item?.phone2}</Text>
-              <Text style={{color: '#333'}}>{item?.email}</Text>
-              <Text style={{color: '#333'}}>{item?.web}</Text>
-            </TouchableOpacity>
-          )}
-        />
-      </ContentWrapper>
+      <Gap vertical={16} />
+      <View style={{flex: 1}}>
+        <ContentWrapper>
+          <InputField
+            LeftIcon={<ICONS.Lup />}
+            placeholder="Search for employee"
+            onChangeText={searchSet}
+            value={search}
+            maxLength={200}
+          />
+          <Gap vertical={24} />
+          <FlatList
+            ListEmptyComponent={
+              employeeListReq.isLoading ? <ActivityIndicator /> : null
+            }
+            onEndReached={loadNext}
+            onEndReachedThreshold={0.2}
+            showsVerticalScrollIndicator={false}
+            ListFooterComponent={
+              <>
+                {employeeListReq.isFetchingNextPage ? (
+                  <ActivityIndicator />
+                ) : null}
+                <Gap vertical={40} />
+              </>
+            }
+            data={employeeListReq.data || []}
+            ItemSeparatorComponent={() => <Gap vertical={spaces.base} />}
+            renderItem={({item}) => (
+              <EmployeeTile
+                company={item?.company_name}
+                onPress={() =>
+                  props.navigation.navigate('EmployeeDetail', {id: 3})
+                }
+                name={joinString(item?.first_name, item?.last_name)}
+                address={joinString(item?.county, item?.city)}
+                phone={item?.phone1}
+                email={item?.email}
+                web={item?.web}
+              />
+            )}
+          />
+        </ContentWrapper>
+      </View>
+      <ButtonIcon onPress={() => props.navigation.navigate('EmployeeCreate')} />
     </Screen>
   );
 }
