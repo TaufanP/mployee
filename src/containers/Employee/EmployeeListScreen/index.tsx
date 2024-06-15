@@ -4,16 +4,15 @@ import {
   Button,
   FlatList,
   Text,
-  TextInput,
   TouchableOpacity,
   View,
 } from 'react-native';
-import {useDebounce, useEmployeeList} from '../../../hooks';
-import {RootStackScreenProps} from '../../../types/routes';
+import ICONS from '../../../assets/icons';
+import {ContentWrapper, Gap} from '../../../components/atoms';
 import {InputField} from '../../../components/molecules';
 import {Header, Screen} from '../../../components/organisms';
-import {ContentWrapper, Gap, Touch, Words} from '../../../components/atoms';
-import colors from '../../../constants/colors';
+import {useDebounce, useEmployeeList} from '../../../hooks';
+import {RootStackScreenProps} from '../../../types/routes';
 
 export default function EmployeeListScreen(
   props: RootStackScreenProps<'EmployeeList'>,
@@ -30,7 +29,7 @@ export default function EmployeeListScreen(
 
   return (
     <Screen>
-      <Header title="Employee Database" hasAction actionLabel="keluar" />
+      <Header title="Employee Database" hasAction actionLabel="Logout" />
       <Gap vertical={24} />
       <ContentWrapper>
         <Button
@@ -38,7 +37,8 @@ export default function EmployeeListScreen(
           onPress={() => props.navigation.navigate('EmployeeCreate')}
         />
         <InputField
-          placeholder="search employee"
+          LeftIcon={<ICONS.Lup />}
+          placeholder="Search for employee"
           onChangeText={searchSet}
           value={search}
           maxLength={200}

@@ -1,8 +1,9 @@
-import Lock from './Lock';
-import EyeOpen from './EyeOpen';
 import EyeClose from './EyeClose';
+import EyeOpen from './EyeOpen';
+import Lock from './Lock';
+import Lup from './Lup';
 import Person from './Person';
 
-const ICONS = {EyeClose, EyeOpen, Lock, Person};
+const ICONS = {EyeClose, EyeOpen, Lock, Lup, Person};
 
 export default ICONS;
