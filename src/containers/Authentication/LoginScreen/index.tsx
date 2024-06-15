@@ -70,6 +70,7 @@ export default function LoginScreen() {
           )}
           name="username"
         />
+        <Gap vertical={16} />
         <Controller
           control={control}
           rules={loginForm.password.rule}

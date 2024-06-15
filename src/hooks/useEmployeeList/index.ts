@@ -26,6 +26,9 @@ export default function useEmployeeList({
       return lastPage.length < 10 ? undefined : allPages.length + 1;
     },
     initialPageParam: 0,
+    select(data) {
+      return data?.pages.map(page => page).flatMap(data => data);
+    },
   });
 
   return {
