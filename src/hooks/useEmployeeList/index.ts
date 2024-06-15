@@ -1,6 +1,7 @@
 import {useInfiniteQuery} from '@tanstack/react-query';
 import {queryKeys} from '../../helpers';
 import {employeeList} from '../../services/employee';
+import useRefetch from '../useRefetch';
 
 export default function useEmployeeList({
   search,
@@ -18,6 +19,7 @@ export default function useEmployeeList({
     hasNextPage,
     isLoading,
     isError,
+    refetch,
   } = useInfiniteQuery({
     queryKey: queryKeys.employeeKeys.list({search, id}),
     queryFn: ({pageParam}) =>
@@ -31,6 +33,8 @@ export default function useEmployeeList({
     },
   });
 
+  const refetchByUser = useRefetch(refetch);
+
   return {
     data,
     error,
@@ -40,5 +44,6 @@ export default function useEmployeeList({
     hasNextPage,
     isLoading,
     isError,
+    ...refetchByUser,
   };
 }
