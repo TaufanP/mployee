@@ -176,7 +176,7 @@ export default function EmployeeCreateScreen(
             <Button
               size="md"
               text="Next"
-              onPress={nameInfoRef?.current?.nextStep}
+              onPress={() => nameInfoRef?.current?.nextStep()}
             />
           </View>
         ) : stepNumber === 3 ? (
