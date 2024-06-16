@@ -1,6 +1,6 @@
 import {SvgProps} from 'react-native-svg';
 import colors from '../../../constants/colors';
-import Icon from './Lup.svg';
+import Icon from './Chevron.svg';
 
 interface Props extends SvgProps {
   colorFill?: string;
