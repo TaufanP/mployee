@@ -8,12 +8,24 @@ interface EmployeeListPayload {
   page?: number;
 }
 
+export default async function list(
+  payload: EmployeeListPayload & {id: number},
+): Promise<Employee>;
+export default async function list(
+  payload: EmployeeListPayload,
+): Promise<Employee[]>;
+
 export default async function list({
   id,
   ...payload
-}: EmployeeListPayload): Promise<Employee[]> {
+}: EmployeeListPayload): Promise<Employee | Employee[]> {
   const {data} = await api.get('/employee', {
-    params: !!id ? {id} : payload,
+    params: id === undefined ? payload : {id},
   });
-  return data;
+
+  if (id !== undefined) {
+    return data as Employee;
+  } else {
+    return data as Employee[];
+  }
 }
