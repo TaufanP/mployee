@@ -1,17 +1,16 @@
 import {PropsWithChildren, useRef} from 'react';
 import {LayoutChangeEvent, View} from 'react-native';
 import Animated, {
-  FadeInDown,
   useAnimatedStyle,
   useDerivedValue,
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
+import ICONS from '../../../assets/icons';
+import colors from '../../../constants/colors';
+import spaces from '../../../constants/spaces';
 import {Gap, Touch, Words} from '../../atoms';
 import styles from './styles';
-import spaces from '../../../constants/spaces';
-import colors from '../../../constants/colors';
-import ICONS from '../../../assets/icons';
 
 const RIGHT = '180deg';
 const DOWN = '90deg';
@@ -48,7 +47,7 @@ export default function Accordion({
   const iconStyle = rotateState(true);
 
   return (
-    <Animated.View entering={FadeInDown} style={styles.containerParent}>
+    <Animated.View style={styles.containerParent}>
       <Touch onPress={onToggle}>
         <View style={styles.container}>
           <Words>{label}</Words>
