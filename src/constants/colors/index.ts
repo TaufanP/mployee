@@ -12,6 +12,9 @@ const colors = {
 
   secondary1: '#FF7F50',
   secondary2: '#FFC7B2',
+  success1: '#005A33',
+  success2: '#86CDAB',
+  success3: '#E8FFF5',
 
   text: '#333333',
 

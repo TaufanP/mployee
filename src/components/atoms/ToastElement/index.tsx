@@ -9,7 +9,7 @@ export function BaseElement(props: BaseToastProps) {
   return (
     <BaseToast
       {...props}
-      style={{borderLeftColor: colors.primary1, backgroundColor: '#F6F6F6'}}
+      style={{borderLeftColor: colors.success2, backgroundColor: '#F6F6F6'}}
       text1Style={{color: colors.text, fontSize: 14}}
     />
   );
