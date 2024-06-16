@@ -87,15 +87,15 @@ export default function EmployeeListScreen(
         }
         data={employeeListReq.data || []}
         ItemSeparatorComponent={() => <Gap vertical={spaces.base} />}
-        renderItem={({item}) => (
+        renderItem={({item: employee, index: id}) => (
           <EmployeeTile
-            company={item?.company_name}
-            onPress={() => props.navigation.navigate('EmployeeDetail', {id: 3})}
-            name={joinString(item?.first_name, item?.last_name, 'name')}
-            address={joinString(item?.county, item?.city)}
-            phone={item?.phone1}
-            email={item?.email}
-            web={item?.web}
+            company={employee?.company_name}
+            onPress={() => props.navigation.navigate('EmployeeDetail', {id})}
+            name={joinString(employee?.first_name, employee?.last_name, 'name')}
+            address={joinString(employee?.county, employee?.city)}
+            phone={employee?.phone1}
+            email={employee?.email}
+            web={employee?.web}
           />
         )}
       />
