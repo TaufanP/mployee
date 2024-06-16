@@ -11,6 +11,7 @@ const colors = {
   primary4: '#86B8CD',
 
   secondary1: '#FF7F50',
+  secondary2: '#FFC7B2',
 
   text: '#333333',
 
