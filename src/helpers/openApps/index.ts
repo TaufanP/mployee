@@ -2,7 +2,7 @@ import {Linking} from 'react-native';
 import Toast from 'react-native-toast-message';
 
 export default async function openApps(
-  type: 'web' | 'phone' | 'mail',
+  type: 'web' | 'phone' | 'mail' | 'sms',
   payload?: string,
 ) {
   if (!!payload) {
@@ -17,7 +17,9 @@ export default async function openApps(
       case 'mail':
         link = `mailto:${payload}`;
         break;
-
+      case 'sms':
+        link = `sms:${payload}`;
+        break;
       default:
         break;
     }

@@ -44,7 +44,6 @@ export default function useEmployeeList({
     hasNextPage,
     isLoading,
     isError,
-    refetch,
     ...refetchByUser,
   };
 }

@@ -9,21 +9,23 @@ interface Props {
   stateLabel: string;
   statePress?: () => void;
   stateButtonLabel?: string;
+  fullPage?: boolean;
 }
 
 export default function StateWrapper(props: Props) {
+  const style = styles({fullPage: props.fullPage});
   return (
-    <View style={styles.container}>
-      <View style={styles.containerContent}>
-        <View style={styles.containerAnimation}>
+    <View style={style.container}>
+      <View style={style.containerContent}>
+        <View style={style.containerAnimation}>
           <LottieView
             source={props.animation}
-            style={styles.animation}
+            style={style.animation}
             autoPlay
             loop
           />
         </View>
-        <View style={styles.containerDetails}>
+        <View style={style.containerDetails}>
           <Words textAlign="center" size="lg">
             {props.stateLabel}
           </Words>

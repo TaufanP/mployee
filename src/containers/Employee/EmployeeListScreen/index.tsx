@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import {ActivityIndicator, FlatList, View} from 'react-native';
+import {ActivityIndicator, FlatList, RefreshControl, View} from 'react-native';
 import ANIMATIONS from '../../../assets/animations';
 import ICONS from '../../../assets/icons';
 import {Gap} from '../../../components/atoms';
@@ -9,13 +9,13 @@ import {
   InputField,
 } from '../../../components/molecules';
 import {Header, Screen, StateWrapper} from '../../../components/organisms';
+import localStorage from '../../../config/localStorage';
+import queryClient from '../../../config/queryClient';
 import {SCREEN_HORIZONTAL_PADDING} from '../../../constants/components';
 import spaces from '../../../constants/spaces';
 import {joinString} from '../../../helpers';
 import {useDebounce, useEmployeeList} from '../../../hooks';
 import {RootStackScreenProps} from '../../../types/routes';
-import queryClient from '../../../config/queryClient';
-import localStorage from '../../../config/localStorage';
 
 export default function EmployeeListScreen(
   props: RootStackScreenProps<'EmployeeList'>,
@@ -57,6 +57,12 @@ export default function EmployeeListScreen(
         <Gap vertical={16} />
       </View>
       <FlatList
+        refreshControl={
+          <RefreshControl
+            refreshing={employeeListReq.isRefetchingByUser}
+            onRefresh={employeeListReq.refetchByUser}
+          />
+        }
         ListEmptyComponent={
           employeeListReq.isLoading ? (
             <StateWrapper

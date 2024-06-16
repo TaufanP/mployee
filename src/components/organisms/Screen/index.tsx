@@ -24,13 +24,13 @@ export default function ({
           style={{
             width: '100%',
             height,
-            backgroundColor: headerColor || colors.white,
+            backgroundColor: headerColor || colors.primary1,
           }}
         />
       )}
       <StatusBar
         translucent
-        barStyle={'dark-content'}
+        barStyle={'light-content'}
         backgroundColor={'transparent'}
       />
       <>{children}</>
