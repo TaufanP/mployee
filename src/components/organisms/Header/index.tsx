@@ -2,6 +2,10 @@ import {useNavigation} from '@react-navigation/native';
 import colors from '../../../constants/colors';
 import {ContentWrapper, Touch, Words} from '../../atoms';
 import styles from './styles';
+import {View} from 'react-native';
+import ICONS from '../../../assets/icons';
+import spaces from '../../../constants/spaces';
+import {SCREEN_HORIZONTAL_PADDING} from '../../../constants/components';
 
 interface Props {
   title?: string;
@@ -14,10 +18,21 @@ export default function (props: Props) {
   const navigation = useNavigation();
 
   return (
-    <ContentWrapper style={styles.container}>
-      <Words weight="semibold" size="base" color={colors.white}>
-        {props.title}
-      </Words>
+    <View
+      style={[
+        styles.container,
+        props.hasAction && {paddingHorizontal: SCREEN_HORIZONTAL_PADDING},
+      ]}>
+      <View style={styles.containerTitle}>
+        {!props.hasAction && (
+          <Touch style={styles.containerBack} onPress={onPressBack}>
+            <ICONS.Chevron fill={colors.white} />
+          </Touch>
+        )}
+        <Words weight="semibold" size="base" color={colors.white}>
+          {props.title}
+        </Words>
+      </View>
       {props.hasAction && (
         <Touch onPress={props.actionPress}>
           <Words underline color={colors.white}>
@@ -25,7 +40,7 @@ export default function (props: Props) {
           </Words>
         </Touch>
       )}
-    </ContentWrapper>
+    </View>
   );
 
   function onPressBack() {

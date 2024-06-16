@@ -1,5 +1,6 @@
 import {StyleSheet} from 'react-native';
 import colors from '../../../constants/colors';
+import spaces from '../../../constants/spaces';
 
 export default StyleSheet.create({
   container: {
@@ -10,4 +11,11 @@ export default StyleSheet.create({
     backgroundColor: colors.primary1,
     flexDirection: 'row',
   },
+  containerBack: {
+    width: 48,
+    aspectRatio: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  containerTitle: {flexDirection: 'row', gap: spaces.sm, alignItems: 'center'},
 });
