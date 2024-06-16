@@ -11,13 +11,20 @@ interface Props {
 
 export default function LinkRow(props: Props) {
   return (
-    <Touch style={styles.container} onPress={props.onPress}>
+    <Touch
+      style={styles.container}
+      onPress={props.onPress}
+      disabled={!props.onPress}>
       <Words>{props.label}</Words>
       <Touch
         style={styles.containerValue}
         onLongPress={undefined}
+        disabled={!props.onPress}
         onPress={props.onPress}>
-        <Words underline textAlign="right" color={colors.primary1}>
+        <Words
+          underline={!!props.onPress}
+          textAlign="right"
+          color={colors.primary1}>
           {props.value}
         </Words>
       </Touch>

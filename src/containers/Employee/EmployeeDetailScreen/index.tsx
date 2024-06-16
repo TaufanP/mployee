@@ -93,6 +93,7 @@ export default function EmployeeDetailScreen(
               onPress={() => openApps('web', employee?.web)}
             />
           )}
+          <Gap vertical={24} />
         </ScrollView>
       ) : (
         <StateWrapper
