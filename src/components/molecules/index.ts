@@ -4,3 +4,4 @@ export {default as EmployeeTile} from './EmployeeTile';
 export {default as InputField} from './InputField';
 export {default as LinkRow} from './LinkRow';
 export {default as QuickAction} from './QuickAction';
+export {default as PhoneQuickActions} from './PhoneQuickActions';

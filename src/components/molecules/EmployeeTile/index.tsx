@@ -1,6 +1,6 @@
-import {Linking, View} from 'react-native';
-import Toast from 'react-native-toast-message';
+import {View} from 'react-native';
 import spaces from '../../../constants/spaces';
+import {openApps} from '../../../helpers';
 import {Touch, Words} from '../../atoms';
 import QuickAction from '../QuickAction';
 import styles from './styles';
@@ -38,66 +38,21 @@ export default function EmployeeTile(props: Props) {
       <View style={styles.dash} />
       <View style={styles.containerActions}>
         <QuickAction
-          onPress={() => quickAction('phone', props?.phone)}
+          onPress={() => openApps('phone', props?.phone)}
           type="call"
           disabled={!props?.phone}
         />
         <QuickAction
-          onPress={() => quickAction('mail', props?.email)}
+          onPress={() => openApps('mail', props?.email)}
           type="mail"
           disabled={!props?.email}
         />
         <QuickAction
-          onPress={() => quickAction('web', props?.web)}
+          onPress={() => openApps('web', props?.web)}
           type="web"
           disabled={!props?.web}
         />
       </View>
     </Touch>
   );
-
-  async function quickAction(type: 'web' | 'phone' | 'mail', payload?: string) {
-    if (!!payload) {
-      let link = '';
-      switch (type) {
-        case 'phone':
-          link = `tel:${payload}`;
-          break;
-        case 'web':
-          link = payload;
-          break;
-        case 'mail':
-          link = `mailto:${payload}`;
-          break;
-
-        default:
-          break;
-      }
-      try {
-        if (type === 'web') {
-          const canOpen = await Linking.canOpenURL(link);
-          if (canOpen) Linking.openURL(link);
-          else {
-            Toast.show({
-              position: 'bottom',
-              type: 'error',
-              text1: 'Cannot visit the site!',
-            });
-          }
-        } else Linking.openURL(link);
-      } catch (error) {
-        Toast.show({
-          position: 'bottom',
-          type: 'error',
-          text1: 'Cannot do the action!',
-        });
-      }
-    } else {
-      Toast.show({
-        position: 'bottom',
-        type: 'error',
-        text1: 'Cannot do the action!',
-      });
-    }
-  }
 }
