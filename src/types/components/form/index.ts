@@ -41,3 +41,16 @@ export type FormNameInfoField = Record<
   keyof FormNameInfo,
   FormFieldRules<FormNameInfo, keyof FormNameInfo>
 >;
+
+export interface FormAddressInfo {
+  address: string;
+  city: string;
+  county: string;
+  state: string;
+  zip: string;
+}
+
+export type FormAddressInfoField = Record<
+  keyof FormAddressInfo,
+  FormFieldRules<FormAddressInfo, keyof FormAddressInfo>
+>;

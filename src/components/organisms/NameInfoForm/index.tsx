@@ -2,7 +2,7 @@ import {forwardRef, useImperativeHandle} from 'react';
 import {Controller, useFormContext} from 'react-hook-form';
 import {View} from 'react-native';
 import Toast from 'react-native-toast-message';
-import nameInfo from '../../../constants/components/forms/nameInfo';
+import {nameInfoForm} from '../../../constants/components/forms';
 import spaces from '../../../constants/spaces';
 import {FormNameInfo} from '../../../types/components/form';
 import {InputField} from '../../molecules';
@@ -45,7 +45,7 @@ const NameInfoForm = forwardRef<NameInfoRef, Props>((props, ref) => {
     <View style={{gap: spaces.m}}>
       <Controller
         control={control}
-        rules={nameInfo.first_name.rule}
+        rules={nameInfoForm.first_name.rule}
         render={({field: {onChange, onBlur, value, ref}}) => (
           <InputField
             error={errors.first_name?.message}
@@ -55,14 +55,14 @@ const NameInfoForm = forwardRef<NameInfoRef, Props>((props, ref) => {
             onSubmitEditing={() => setFocus('last_name')}
             ref={ref}
             value={value}
-            {...nameInfo.first_name.input}
+            {...nameInfoForm.first_name.input}
           />
         )}
         name="first_name"
       />
       <Controller
         control={control}
-        rules={nameInfo.last_name.rule}
+        rules={nameInfoForm.last_name.rule}
         render={({field: {onChange, onBlur, value, ref}}) => (
           <InputField
             error={errors.last_name?.message}
@@ -72,14 +72,14 @@ const NameInfoForm = forwardRef<NameInfoRef, Props>((props, ref) => {
             onSubmitEditing={() => setFocus('company_name')}
             ref={ref}
             value={value}
-            {...nameInfo.last_name.input}
+            {...nameInfoForm.last_name.input}
           />
         )}
         name="last_name"
       />
       <Controller
         control={control}
-        rules={nameInfo.company_name.rule}
+        rules={nameInfoForm.company_name.rule}
         render={({field: {onChange, onBlur, value, ref}}) => (
           <InputField
             error={errors.company_name?.message}
@@ -89,7 +89,7 @@ const NameInfoForm = forwardRef<NameInfoRef, Props>((props, ref) => {
             onSubmitEditing={nextStep}
             ref={ref}
             value={value}
-            {...nameInfo.company_name.input}
+            {...nameInfoForm.company_name.input}
           />
         )}
         name="company_name"
