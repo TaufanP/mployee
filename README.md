@@ -44,7 +44,7 @@ Mployee is an employee organizer application. You can store various info about y
 
 ### Add New Employee
 
-<img src="" alt="Add New Employee" height="600">
+[Add New Employee](https://drive.google.com/file/d/1aKTbsXqnqCPB4e35-iqZ3ChMRZSRh58q/view?usp=sharing).
 
 <!-- GETTING STARTED -->
 
