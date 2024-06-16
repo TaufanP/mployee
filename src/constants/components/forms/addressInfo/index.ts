@@ -16,6 +16,7 @@ const nameInfo: FormAddressInfoField = {
       maxLength: 199,
       label: 'Address',
       placeholder: 'Enter employee address',
+      autoCapitalize: 'words',
       returnKeyLabel: 'next',
       returnKeyType: 'next',
     },
@@ -91,7 +92,7 @@ const nameInfo: FormAddressInfoField = {
         value: 3,
       },
       pattern: {
-        value: /^[0-9\-]+$/,
+        value: /^[a-zA-Z0-9\- ]+$/,
         message: 'ZIP code should only contains numbers!',
       },
     },
@@ -99,7 +100,7 @@ const nameInfo: FormAddressInfoField = {
       maxLength: 11,
       placeholder: 'Enter employee zip code',
       label: 'ZIP Code',
-      keyboardType: 'number-pad',
+      keyboardType: 'name-phone-pad',
     },
   },
 };
