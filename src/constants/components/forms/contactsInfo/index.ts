@@ -25,7 +25,7 @@ const nameInfo: FormContactsInfoField = {
       },
       minLength: {
         message: 'Phone number should be more than 10 characters!',
-        value: 11,
+        value: 10,
       },
       pattern: {
         value: /^\d+$/,
@@ -49,7 +49,7 @@ const nameInfo: FormContactsInfoField = {
       },
       minLength: {
         message: 'Phone number should be more than 10 characters!',
-        value: 11,
+        value: 10,
       },
       pattern: {
         value: /^\d+$/,
