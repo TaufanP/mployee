@@ -35,22 +35,18 @@ const typeStyle = ({type, disabled}: {type: ButtonType; disabled?: boolean}) =>
             : colors.secondary1
           : disabled
           ? colors.dark650
-          : colors.white,
+          : colors.secondary1,
     },
   });
 
 const sizeStyle = (size: ButtonSize) => {
   const SIZE =
-    size === 'lg'
-      ? spaces.xl
-      : size === 'md'
-      ? spaces.lg + spaces.xs
-      : spaces.base;
+    size === 'lg' ? spaces.xl : size === 'md' ? spaces.m : spaces.base;
 
   return StyleSheet.create({
     container: {
       paddingHorizontal: SIZE,
-      paddingVertical: SIZE / 2,
+      paddingVertical: SIZE / 1.5,
     },
   });
 };

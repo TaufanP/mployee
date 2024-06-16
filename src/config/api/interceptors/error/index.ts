@@ -37,6 +37,15 @@ export default function (error: AxiosError) {
     });
   }
 
+  if (statusCode === 403) {
+    return Promise.reject({
+      ...(typeof error?.response?.data === 'string'
+        ? {message: error?.response?.data}
+        : error?.response?.data || {}),
+      status: statusCode,
+    });
+  }
+
   if (statusCode === 400) {
     return Promise.reject({
       ...(typeof error?.response?.data === 'string'

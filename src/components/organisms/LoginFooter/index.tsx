@@ -1,8 +1,7 @@
-import {View} from 'react-native';
-import {Touch, Words} from '../../atoms';
 import colors from '../../../constants/colors';
+import {Touch, Words} from '../../atoms';
+import FloatWrapper from '../../atoms/FloatWrapper';
 import {Button} from '../../molecules';
-import styles from './styles';
 
 interface Props {
   onPress: () => void;
@@ -12,7 +11,7 @@ interface Props {
 
 export default function LoginFooter(props: Props) {
   return (
-    <View style={styles.container}>
+    <FloatWrapper>
       <Touch>
         <Words textAlign="center">
           Do not have an account?{' '}
@@ -27,6 +26,6 @@ export default function LoginFooter(props: Props) {
         isLoading={props.isLoading}
         disabled={props.disabled}
       />
-    </View>
+    </FloatWrapper>
   );
 }

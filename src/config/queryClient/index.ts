@@ -1,6 +1,7 @@
 import {MutationCache, QueryCache, QueryClient} from '@tanstack/react-query';
 import {logger} from '../../helpers';
 import Toast from 'react-native-toast-message';
+import localStorage from '../localStorage';
 
 function showToast(message: string) {
   Toast.show({
@@ -19,8 +20,10 @@ export default new QueryClient({
         'error',
         `src/config/queryClient/${JSON.stringify(variables)}`,
       );
-      if (typeof error === 'string') showToast(error || 'Something went wrong');
-      else showToast(error.message || 'Something went wrong');
+      if (typeof error === 'string') {
+        showToast(error || 'Something went wrong');
+        if (error === 'Token Expired') localStorage.clearAll();
+      } else showToast(error.message || 'Something went wrong');
     },
   }),
   queryCache: new QueryCache({
@@ -31,10 +34,12 @@ export default new QueryClient({
         'error',
         `src/config/queryClient/${query.queryKey}`,
       );
-      showToast(error.message);
 
-      // 🎉 only show error toasts if we already have data in the cache
-      // which indicates a failed background update
+      if (typeof error === 'string') {
+        showToast(error || 'Something went wrong');
+        if (error === 'Token Expired') localStorage.clearAll();
+      } else showToast(error.message || 'Something went wrong');
+
       if (query.state.data !== undefined) {
         logger(
           `Something went wrong: ${error.message}`,
