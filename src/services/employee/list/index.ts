@@ -22,9 +22,9 @@ export default async function list({
   const {data} = await api.get('/employee', {
     params: id === undefined ? payload : {id},
   });
-
   if (id !== undefined) {
-    return data as Employee;
+    if (data === '') throw {message: `Cannot find employee with ID ${id}`};
+    else return data as Employee;
   } else {
     return data as Employee[];
   }

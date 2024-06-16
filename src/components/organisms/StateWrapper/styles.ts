@@ -11,6 +11,7 @@ export default function styles({fullPage}: {fullPage?: boolean}) {
       alignItems: 'center',
     },
     containerAnimation: {width: '100%', aspectRatio: 1.5},
+    containerButton: {alignSelf: 'center'},
     containerContent: {
       width: '100%',
       height: '100%',

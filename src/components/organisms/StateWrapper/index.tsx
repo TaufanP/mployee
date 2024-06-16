@@ -30,7 +30,12 @@ export default function StateWrapper(props: Props) {
             {props.stateLabel}
           </Words>
           {!!props.stateButtonLabel && (
-            <Button text={props.stateButtonLabel} onPress={props.statePress} />
+            <View style={style.containerButton}>
+              <Button
+                text={props.stateButtonLabel}
+                onPress={props.statePress}
+              />
+            </View>
           )}
         </View>
       </View>
