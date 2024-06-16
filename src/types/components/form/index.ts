@@ -54,3 +54,15 @@ export type FormAddressInfoField = Record<
   keyof FormAddressInfo,
   FormFieldRules<FormAddressInfo, keyof FormAddressInfo>
 >;
+
+export interface FormContactsInfo {
+  phone1: string;
+  phone2: string;
+  email: string;
+  web: string;
+}
+
+export type FormContactsInfoField = Record<
+  keyof FormContactsInfo,
+  FormFieldRules<FormContactsInfo, keyof FormContactsInfo>
+>;
