@@ -12,6 +12,7 @@ const nameInfo: FormContactsInfoField = {
       maxLength: 72,
       label: 'Email Address',
       placeholder: 'Enter employee email address',
+      autoCapitalize: 'none',
       returnKeyLabel: 'next',
       returnKeyType: 'next',
       keyboardType: 'email-address',
@@ -79,6 +80,7 @@ const nameInfo: FormContactsInfoField = {
       placeholder: 'Enter employee website',
       label: 'Website',
       keyboardType: 'url',
+      autoCapitalize: 'none',
     },
   },
 };
