@@ -10,7 +10,7 @@ export function BaseElement(props: BaseToastProps) {
     <BaseToast
       {...props}
       style={{borderLeftColor: colors.primary1, backgroundColor: '#F6F6F6'}}
-      text1Style={{color: colors.text}}
+      text1Style={{color: colors.text, fontSize: 14}}
     />
   );
 }
@@ -20,7 +20,7 @@ export function ErrorElement(props: BaseToastProps) {
     <ErrorToast
       {...props}
       style={{borderLeftColor: colors.danger, backgroundColor: '#F6F6F6'}}
-      text1Style={{color: colors.text}}
+      text1Style={{color: colors.text, fontSize: 14}}
     />
   );
 }
