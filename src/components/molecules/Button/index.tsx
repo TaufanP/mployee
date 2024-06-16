@@ -1,7 +1,8 @@
-import {ActivityIndicator, TouchableOpacityProps} from 'react-native';
+import {ActivityIndicator, TouchableOpacityProps, View} from 'react-native';
 import styles from './styles';
 import {Touch, Words} from '../../atoms';
 import colors from '../../../constants/colors';
+import {ReactNode} from 'react';
 
 export type ButtonType = 'primary' | 'secondary' | 'text';
 export type ButtonSize = 'lg' | 'md' | 'sm';
@@ -13,6 +14,7 @@ export interface Props extends TouchableOpacityProps {
   text?: string;
   type?: ButtonType;
   fluid?: boolean;
+  Icon?: ReactNode;
 }
 
 export default function ({
@@ -22,6 +24,7 @@ export default function ({
   text,
   type = 'primary',
   fluid,
+  Icon,
   ...props
 }: Props) {
   const typeStyles = styles.typeStyle({
@@ -31,12 +34,7 @@ export default function ({
 
   const sizeStyles = styles.sizeStyle(size).container;
 
-  const textType =
-    size === 'lg'
-      ? 'heading1/regular'
-      : size === 'md'
-      ? 'normal/regular'
-      : 'caption/regular';
+  const fontSize = size === 'lg' ? 'lg' : size === 'md' ? 'base' : 'sm';
 
   const textColor =
     type === 'primary'
@@ -61,12 +59,16 @@ export default function ({
       {isLoading ? (
         <ActivityIndicator color={textColor} />
       ) : (
-        <Words
-          textAlign="center"
-          color={textColor}
-          style={{fontSize: 16, fontWeight: '500'}}>
-          {text}
-        </Words>
+        <View style={styles.general.containerContent}>
+          {Icon}
+          <Words
+            textAlign="center"
+            color={textColor}
+            size={fontSize}
+            weight={'semibold'}>
+            {text}
+          </Words>
+        </View>
       )}
     </Touch>
   );

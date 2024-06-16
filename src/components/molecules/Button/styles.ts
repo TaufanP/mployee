@@ -10,6 +10,11 @@ const general = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  containerContent: {
+    flexDirection: 'row',
+    gap: spaces.sm,
+    alignItems: 'center',
+  },
 });
 
 const typeStyle = ({type, disabled}: {type: ButtonType; disabled?: boolean}) =>
@@ -22,7 +27,7 @@ const typeStyle = ({type, disabled}: {type: ButtonType; disabled?: boolean}) =>
             : colors.secondary1
           : type == 'text'
           ? colors.white
-          : 'transparent',
+          : colors.white,
       borderColor:
         type === 'primary'
           ? disabled
@@ -30,7 +35,7 @@ const typeStyle = ({type, disabled}: {type: ButtonType; disabled?: boolean}) =>
             : colors.secondary1
           : disabled
           ? colors.dark650
-          : colors.dark650,
+          : colors.white,
     },
   });
 
