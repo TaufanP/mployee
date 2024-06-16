@@ -5,11 +5,6 @@ interface InputProps extends TextInputProps {
   label?: string;
 }
 
-interface FormLogin {
-  username: string;
-  password: string;
-}
-
 type OmittedRegisterOptions =
   | 'disabled'
   | 'valueAsNumber'
@@ -26,7 +21,23 @@ interface FormFieldRules<T extends FieldValues, K extends Path<T>> {
   input: InputProps;
 }
 
-export type FormField = Record<
+export interface FormLogin {
+  username: string;
+  password: string;
+}
+
+export type FormLoginField = Record<
   keyof FormLogin,
   FormFieldRules<FormLogin, keyof FormLogin>
+>;
+
+export interface FormNameInfo {
+  first_name: string;
+  last_name: string;
+  company_name: string;
+}
+
+export type FormNameInfoField = Record<
+  keyof FormNameInfo,
+  FormFieldRules<FormNameInfo, keyof FormNameInfo>
 >;

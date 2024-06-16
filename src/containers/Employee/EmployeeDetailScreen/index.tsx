@@ -61,18 +61,24 @@ export default function EmployeeDetailScreen(
               <RowIcon label={fullAddress} type="country" />
             </View>
           )}
-          <Accordion label={'Primary Number'} value={employee?.phone1 || ''}>
-            <PhoneQuickActions
-              callPress={() => openApps('phone', employee?.phone1)}
-              messagePress={() => openApps('sms', employee?.phone1)}
-            />
-          </Accordion>
-          <Accordion label={'Secondary Number'} value={employee?.phone2 || ''}>
-            <PhoneQuickActions
-              callPress={() => openApps('phone', employee?.phone2)}
-              messagePress={() => openApps('sms', employee?.phone2)}
-            />
-          </Accordion>
+          {!!employee?.phone1 && (
+            <Accordion label={'Primary Number'} value={employee?.phone1 || ''}>
+              <PhoneQuickActions
+                callPress={() => openApps('phone', employee?.phone1)}
+                messagePress={() => openApps('sms', employee?.phone1)}
+              />
+            </Accordion>
+          )}
+          {!!employee?.phone2 && (
+            <Accordion
+              label={'Secondary Number'}
+              value={employee?.phone2 || ''}>
+              <PhoneQuickActions
+                callPress={() => openApps('phone', employee?.phone2)}
+                messagePress={() => openApps('sms', employee?.phone2)}
+              />
+            </Accordion>
+          )}
           {!!employee?.email && (
             <LinkRow
               label="Email"

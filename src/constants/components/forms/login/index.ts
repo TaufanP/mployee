@@ -1,6 +1,6 @@
-import {FormField} from '../../../../types/components/form';
+import {FormLoginField} from '../../../../types/components/form';
 
-const login: FormField = {
+const login: FormLoginField = {
   username: {
     rule: {
       required: {message: 'Please enter your username!', value: true},

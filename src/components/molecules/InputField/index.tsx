@@ -13,7 +13,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import colors from '../../../constants/colors';
 import spaces from '../../../constants/spaces';
-import {Gap, Touch, Words} from '../../atoms';
+import {Touch, Words} from '../../atoms';
 import styles from './styles';
 
 interface Props extends TextInputProps {
