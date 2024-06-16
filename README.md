@@ -1,79 +1,96 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+<!-- HEADER -->
+<p align="center">
+  <img src="https://github.com/TaufanP/mployee/assets/33638021/6c31196e-409c-40ba-ab98-54f38dc9b6c9" alt="Mployee" width="104">
+  <h1 align="center">Mployee</h1>
+</p>
 
-# Getting Started
+<!-- DESCRIPTION -->
+<h4 align="center">Easily manage your employees</h4>
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+<!-- DEPENDENCIES -->
+<p align="center">
+  <img src="https://img.shields.io/badge/react-18.2.0-green" alt="React 18.2.0" height="24">
+  <img src="https://img.shields.io/badge/react--native-0.74.2-green" alt="React Native 0.74.2" height="24">
+  <img src="https://img.shields.io/badge/typescript-5.0.4-blue" alt="Typescript 5.0.4" height="24">
+</p>
 
-## Step 1: Start the Metro Server
+<!-- TABLE OF CONTENTS -->
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+## Table of Contents
 
-To start Metro, run the following command from the _root_ of your React Native project:
+- [About Mployee](#about)
+- [Demo and Preview](#demo-preview)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+  - [Generate Android Debug APK](#generate)
+- [Download](#download)
 
-```bash
-# using npm
-npm start
+<!-- BACKGROUND -->
 
-# OR using Yarn
-yarn start
+## About Mployee <a name="about"></a>
+
+<p>
+Mployee is an employee organizer application. You can store various info about your employees. Easily maintainable, there are features like search employee, employee detail, and create a new employee.
+</p>
+
+<!-- DEMO AND PREVIEW -->
+
+## Demo and Preview <a name="demo-preview"></a>
+
+### Search and Display Employees
+
+<img src="https://github.com/TaufanP/mployee/assets/33638021/9523f387-6616-46af-867f-41291b41692e" alt="Search and Display Employees" height="600">
+
+### Add New Employee
+
+<img src="" alt="Add New Employee" height="600">
+
+<!-- GETTING STARTED -->
+
+## Getting Started <a name="getting-started"></a>
+
+### Prerequisites <a name="prerequisites"></a>
+
+- [Node.js](https://nodejs.org/en/download/) (npm included)
+- [Yarn](https://classic.yarnpkg.com/en/docs/getting-started)
+
+### Installation <a name="installation"></a>
+
+Clone this [repo](https://github.com/TaufanP/mployee) then open the directory with your terminal by executing
+
+```
+git clone https://github.com/TaufanP/mployee
 ```
 
-## Step 2: Start your Application
-
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
-
-### For Android
-
-```bash
-# using npm
-npm run android
-
-# OR using Yarn
-yarn android
+```
+cd mployee
 ```
 
-### For iOS
+Install all the packages
 
-```bash
-# using npm
-npm run ios
-
-# OR using Yarn
-yarn ios
+```
+yarn install
 ```
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+[Run](https://reactnative.dev/docs/running-on-device) the application on your device.
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
+### Generate Android Debug APK <a name="generate"></a>
 
-## Step 3: Modifying your App
+Developer who runs in a Windows operating system could use this command
 
-Now that you have successfully run the app, let's modify it.
+```
+yarn build-win
+```
 
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
+The generated app would be stored in
 
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
+```
+mobile-test/android/app/build/outputs/apk/debug/app-debug.apk
+```
 
-## Congratulations! :tada:
+<!-- DOWNLOAD -->
 
-You've successfully run and modified your React Native App. :partying_face:
+## Download <a name="download"></a>
 
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+Get the Android-released version [here](https://drive.google.com/file/d/1ijDtxBY8tFBTOaKWFuhzV2CCE4GfVIxj/view?usp=drive_link).
